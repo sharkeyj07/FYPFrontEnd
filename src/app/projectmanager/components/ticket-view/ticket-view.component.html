@@ -1,0 +1,84 @@
+<app-toolbar></app-toolbar>
+
+
+
+
+<div *ngIf="ticket">
+  <mat-card class="wrapper">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>{{ticket.title}}</h2>
+      </mat-card-title>
+      <mat-card-subtitle>Ticket: {{ticket.ID}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="flex-container">
+      <mat-form-field>
+        <input matInput placeholder="Title" [(ngModel)]="ticket.title" maxlength="60" required>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Priority" [(ngModel)]="ticket.priority">
+          <mat-option *ngFor="let priority of project.priorities" [value]="priority.ID" required>
+            {{ priority.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Sprint" [(ngModel)]="ticket.sprint">
+          <mat-option *ngFor="let sprint of project.sprints" [value]="sprint.ID">
+            {{ sprint.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Status" [(ngModel)]="ticket.status">
+          <mat-option *ngFor="let status of project.ticketStatuses" [value]="status.ID">
+            {{ status.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Assigned To" [(ngModel)]="ticket.assignedTo">
+          <mat-option *ngFor="let user of allContributors" [value]="user">
+            {{ user }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-card class="wrapper">
+        <mat-card-header>
+          <mat-card-subtitle>Hours</mat-card-subtitle>
+        </mat-card-header>
+        <mat-list role="list">
+          <mat-list-item *ngFor="let hour of ticket.hours">
+            {{ hour.user }} logged {{hour.value}} hours on {{hour.dateAdded | date:'full'}}
+            <span class="example-fill-remaining-space"></span>
+            <button mat-icon-button (click)="removeHour(hour)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-list-item>
+          <mat-list-item *ngIf="ticket.hours.length < 1">
+            No Hours assigned to ticket yet
+          </mat-list-item>
+        </mat-list>
+        <mat-card-actions>
+          <mat-form-field>
+            <input matInput placeholder="Hours" [(ngModel)]="hoursToAdd" type="number">
+          </mat-form-field>
+          <button mat-button color="primary" (click)="addHours()">
+            <mat-icon>add</mat-icon>
+            ADD HOURS
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button color="warn" (click)="delete()">
+        <mat-icon>delete</mat-icon> DELETE</button>
+
+        <div fxFlex></div>
+        <button mat-button (click)="cancel()">
+          <mat-icon>cancel</mat-icon> CANCEL</button>
+          <button mat-raised-button color="primary" (click)="save()">
+            <mat-icon>save</mat-icon> SAVE</button>
+    </mat-card-actions>
+  </mat-card>
+</div>

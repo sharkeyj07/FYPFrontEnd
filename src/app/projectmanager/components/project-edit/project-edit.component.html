@@ -1,0 +1,153 @@
+<app-toolbar></app-toolbar>
+<div *ngIf="!project">
+    <mat-spinner></mat-spinner>
+  </div>
+  <div *ngIf="project">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>
+          <h2>{{project.title}}</h2>
+        </mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+          <mat-card>
+              <mat-card-header>
+                <mat-card-title>
+                  <h2 >Project Title</h2>
+                </mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                  <mat-form-field class="example-half-width">
+                    <input matInput placeholder="Title" [(ngModel)]="project.title" name="1"  maxlength="30" required>
+                  </mat-form-field>
+              </mat-card-content>
+          </mat-card>
+        <mat-card>
+          <mat-card-header>
+            <mat-card-subtitle>Admins</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-selection-list #admins>
+              <mat-list-option *ngFor="let admin of project.admins">
+                {{admin}}
+              </mat-list-option>
+            </mat-selection-list>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button color="warn" (click)="demote(admins.selectedOptions.selected)">
+              DEMOTE SELECTED USERS
+            </button>
+          </mat-card-actions>
+        </mat-card>
+  
+        <mat-card>
+          <mat-card-header>
+            <mat-card-subtitle>Users</mat-card-subtitle>
+          </mat-card-header>
+          <mat-selection-list #users>
+            <mat-list-option *ngFor="let user of project.users">
+              {{user}}
+            </mat-list-option>
+          </mat-selection-list>
+          <mat-card-actions>
+            <form>
+                <mat-form-field>
+                  <input matInput placeholder="Username" [(ngModel)]="usernameToAdd" name="2" maxlength="30">
+                </mat-form-field>
+                <button mat-raised-button  (click)="addUser()">
+                  ADD USER
+                </button>
+            </form>
+            <button mat-button (click)="promote(users.selectedOptions.selected)">
+              PROMOTE SELECTED USERS
+            </button>
+            <button mat-button color="warn" (click)="removeSelectedUsers(users.selectedOptions.selected)">
+              REMOVE SELECTED USERS
+            </button>
+          </mat-card-actions>
+        </mat-card>
+  
+        <mat-card>
+          <mat-card-header>
+            <mat-card-subtitle>Ticket Priorities</mat-card-subtitle>
+          </mat-card-header>
+          <mat-list role="list" #priorities>
+            <mat-list-item role="listitem" *ngFor="let priority of project.priorities">
+              {{priority.name}}
+            </mat-list-item>
+          </mat-list>
+          <mat-card-actions>
+            <form>
+                <mat-form-field>
+                  <input matInput placeholder="Priority" [(ngModel)]="priorityToAdd" name="3" maxlength="30">
+                </mat-form-field>
+                <button mat-raised-button (click)="addPriority()">
+                  ADD PRIORITY
+                </button>
+            </form>
+          </mat-card-actions>
+        </mat-card>
+  
+        <mat-card>
+          <mat-card-header>
+            <mat-card-subtitle>Ticket Statuses</mat-card-subtitle>
+          </mat-card-header>
+          <mat-list role="list"  #priorities>
+            <mat-list-item *ngFor="let status of project.ticketStatuses">
+              {{status.name}}
+            </mat-list-item>
+          </mat-list>
+          <mat-card-actions>
+            <form>
+                <mat-form-field>
+                  <input matInput placeholder="Status" [(ngModel)]="statusToAdd" name="4" maxlength="30">
+                </mat-form-field>
+                <button mat-raised-button  (click)="addStatus()">
+                  ADD STATUS
+                </button>
+            </form>
+          </mat-card-actions>
+        </mat-card>
+  
+        <mat-card>
+          <mat-card-header>
+            <mat-card-subtitle>Sprints</mat-card-subtitle>
+          </mat-card-header>
+          <mat-list role="list" #sprints>
+            <mat-list-item *ngFor="let sprint of project.sprints">
+              {{sprint.name}}  ....  {{sprint.startDate | date}} to {{sprint.endDate | date}}
+            </mat-list-item>
+          </mat-list>
+          <mat-card-actions>
+            <form>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" placeholder="Start Date" [(ngModel)]="sprintStartDate" name="5">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker2" placeholder="End Date" [(ngModel)]="sprintEndDate" name="6">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field>
+                  <input matInput placeholder="Sprint name"  [(ngModel)]="sprintToAdd" name="7" maxlength="30">
+                </mat-form-field>
+                <button mat-raised-button (click)="addSprint()">
+                  ADD SPRINT
+                </button>
+            </form>
+          </mat-card-actions>
+        </mat-card>
+  
+  
+      </mat-card-content>
+      <mat-card-actions>
+          <div fxFlex></div>
+        <button mat-button (click)="cancel()">
+          <mat-icon>cancel</mat-icon> CANCEL</button>
+          <button mat-raised-button color="primary" (click)="save()">
+            <mat-icon>save</mat-icon> SAVE</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>

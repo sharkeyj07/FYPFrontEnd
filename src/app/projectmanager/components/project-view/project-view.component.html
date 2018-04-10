@@ -1,0 +1,97 @@
+<!-- <app-toolbar></app-toolbar>
+<div fxLayout="row" fxLayoutAlign="start none">
+  <app-filters></app-filters>
+  <app-tickets-overview fxFill></app-tickets-overview>
+</div> -->
+<mat-sidenav-container class="app-sidenav-container">
+  <mat-sidenav #sidenav class="app-sidenav mat-elevation-z10" [opened]="!isScreenSmall()" [mode]="isScreenSmall() ? 'over' : 'side'">
+    <mat-toolbar color="primary">
+      Filters
+    </mat-toolbar>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Ticket Status
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-selection-list #statuses>
+          <mat-list-option *ngFor="let status of project.ticketStatuses">
+            {{status.name}}
+          </mat-list-option>
+        </mat-selection-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+              Ticket Priority
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-selection-list #priorities>
+            <mat-list-option *ngFor="let priority of project.priorities">
+              {{priority.name}}
+            </mat-list-option>
+          </mat-selection-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+              Assigned To
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-selection-list #assigned>
+            <mat-list-option *ngFor="let member of allMembers">
+              {{member}}
+            </mat-list-option>
+          </mat-selection-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+
+    <mat-accordion>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+              Sprint
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-select placeholder="Sprint" [(ngModel)]="selectedSprint">
+            <mat-option [value]="-1">
+              Any
+            </mat-option>
+            <mat-option *ngFor="let sprint of project.sprints" [value]="sprint.ID">
+              {{sprint.name}} .... {{sprint.startDate | date}} to {{sprint.endDate | date}}
+            </mat-option>
+          </mat-select>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <div>
+        <div fxFlex></div>
+        <button mat-raised-button color="primary" class="filterButton" (click)="applyFilters(statuses.selectedOptions.selected, priorities.selectedOptions.selected, assigned.selectedOptions.selected)">
+          <mat-icon>filter_list</mat-icon> APPLY</button>
+          <div fxFlex></div>
+    </div>
+  </mat-sidenav>
+
+  <div class="app-sidenav-content">
+    <app-toolbar (toggleSidenav)="sidenav.toggle()"></app-toolbar>
+    <div class="wrapper">
+      <app-tickets-overview fxFill></app-tickets-overview>
+      <button mat-fab color="accent" (click)="newTicket()" class="fab-button">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+  </div>
+
+
+</mat-sidenav-container>

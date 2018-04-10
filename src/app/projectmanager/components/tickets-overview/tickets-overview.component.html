@@ -1,0 +1,43 @@
+<div *ngIf="dataSource" class="example-container mat-elevation-z8">
+
+  <div class="example-header">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  </div>
+
+  <mat-nav-list>
+    <mat-table #table [dataSource]="dataSource" matSort>
+
+      <ng-container matColumnDef="ID">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Ticket No. </mat-header-cell>
+        <mat-cell *matCellDef="let ticket" (click)="ticketSelected(ticket)">
+          <mat-list-item>
+            <a matLine>{{ ticket.ID }}</a>
+          </mat-list-item>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell>
+        <mat-cell *matCellDef="let ticket" (click)="ticketSelected(ticket)">
+          <mat-list-item>
+            <a matLine>{{ ticket.title }}</a>
+          </mat-list-item>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="priority">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Priority </mat-header-cell>
+        <mat-cell *matCellDef="let ticket" (click)="ticketSelected(ticket)">
+          <mat-list-item>
+            <a matLine>{{ ticket.priority.name }}</a>
+          </mat-list-item>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </mat-nav-list>
+</div>

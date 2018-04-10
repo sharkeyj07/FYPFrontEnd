@@ -1,0 +1,55 @@
+<h2 mat-dialog-title>Add new ticket</h2>
+<mat-dialog-content>
+  <!-- <form class="example-form"> -->
+
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="Title" [(ngModel)]="ticket.title" maxlength="60" required>
+      </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <textarea matInput placeholder="Description" [(ngModel)]="ticket.description"></textarea>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Priority" [(ngModel)]="ticket.priority">
+        <mat-option *ngFor="let priority of project.priorities" [value]="priority.ID">
+          {{ priority.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Status" [(ngModel)]="ticket.status">
+        <mat-option *ngFor="let status of project.ticketStatuses" [value]="status.ID">
+          {{ status.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Sprint" [(ngModel)]="ticket.sprint">
+        <mat-option *ngFor="let sprint of project.sprints" [value]="sprint.ID">
+          {{ sprint.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-select placeholder="Assigned To" [(ngModel)]="ticket.assignedTo">
+        <mat-option *ngFor="let user of allContributors" [value]="user">
+          {{ user }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+<!-- 
+  </form> -->
+</mat-dialog-content>
+<mat-dialog-actions>
+    <div fxFlex></div>
+  <button mat-button (click)="cancel()">
+    <mat-icon>cancel</mat-icon>
+    CANCEL
+  </button>
+  <button mat-raised-button (click)="save()" color="primary">
+    <mat-icon>save</mat-icon> SAVE</button>
+</mat-dialog-actions>

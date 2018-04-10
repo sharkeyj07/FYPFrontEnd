@@ -1,0 +1,29 @@
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+    margin-top: 10%;
+    }
+
+.flex-item {
+    order: 0;
+    flex: 0 0 auto;
+    align-self: center;
+    }
+
+    .register-card {
+        min-height: 600px;
+        min-width: 400px;
+    }
+    
+    .spacer {
+        flex: 1 1 auto;
+    }
+  
+    .example-full-width {
+      width: 100%;
+    }
+    

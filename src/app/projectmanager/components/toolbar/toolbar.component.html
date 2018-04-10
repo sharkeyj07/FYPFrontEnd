@@ -1,0 +1,20 @@
+<mat-toolbar color="primary">
+
+        <button mat-icon-button *ngIf="isMenuButtonVisible()" (click)="toggleFilters()">
+                <mat-icon>menu</mat-icon>
+        </button>
+        <span>{{ title }}</span>
+
+        <!-- This fills the remaining space of the current row -->
+        <span class="example-fill-remaining-space"></span>
+
+        <button mat-button (click)="navigateToAccount()">
+                        <mat-icon>account_circle</mat-icon>
+                        ACCOUNT
+                      </button>
+
+<button mat-button (click)="logout()">
+                <mat-icon>input</mat-icon>
+                LOGOUT
+              </button>
+</mat-toolbar>

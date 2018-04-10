@@ -1,0 +1,42 @@
+<app-toolbar></app-toolbar>
+
+
+<div class="flex-container">
+    <form>
+        <mat-card class="flex-item">
+            <mat-card-header>
+              <mat-card-title>Project Manager</mat-card-title>
+              <mat-card-subtitle>Account</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <mat-list role="list">
+                <mat-list-item role="listitem">
+                    <button mat-raised-button (click)="newProject()">
+                      <mat-icon>create_new_folder</mat-icon>
+                      CREATE PROJECT
+                    </button>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    <button mat-raised-button (click)="navigateToProjects()">
+                      <mat-icon>folder</mat-icon>
+                      PROJECTS
+                    </button>
+                </mat-list-item>
+                <mat-list-item role="listitem">
+                    <button mat-raised-button (click)="changePassword()">
+                      <mat-icon>security</mat-icon>
+                      CHANGE PASSWORD
+                    </button>
+                </mat-list-item>
+              </mat-list>
+            </mat-card-content>
+            <!-- <mat-card-actions>
+                <button mat-button type="button" (click)="register()">Register</button>
+                  <span class="spacer"></span>
+                  <div fxFlex></div>
+                  <button mat-raised-button type="submit" (click)="login()">
+                    <mat-icon>forward</mat-icon> Login</button>
+            </mat-card-actions> -->
+          </mat-card>
+    </form>
+  </div>

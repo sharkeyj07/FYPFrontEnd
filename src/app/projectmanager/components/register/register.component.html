@@ -1,0 +1,28 @@
+<div class="flex-container">
+  <form>
+    <mat-card class="flex-item">
+      <mat-card-header>
+        <mat-card-title>Project Manager</mat-card-title>
+        <mat-card-subtitle>Register</mat-card-subtitle>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Username" [(ngModel)]="username" name="something" maxlength="30">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Password" type="password" [(ngModel)]="password" name="something2">
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Repeat Password" type="password" [(ngModel)]="repeatPassword" name="something3">
+        </mat-form-field>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button type="button" (click)="login()">LOGIN</button>
+        <span class="spacer"></span>
+        <div fxFlex></div>
+        <button mat-raised-button type="submit" color="primary" (click)="register()">
+          <mat-icon>person_add</mat-icon> REGISTER</button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</div>

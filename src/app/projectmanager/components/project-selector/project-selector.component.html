@@ -1,0 +1,21 @@
+<mat-tab-group>
+  <mat-tab label="My Projects">
+    <mat-nav-list>
+      <mat-list-item *ngFor="let project of myProjects | async" (click)="projectSelected(project)">
+        <!-- async pipe is needed to bind to observables -->
+        <a matLine >{{ project.title }}</a>
+        <button mat-icon-button (click)="edit(project)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-tab>
+  <mat-tab label="Collaborative Projects">
+    <mat-nav-list>
+      <mat-list-item *ngFor="let project of myColabProjects | async" (click)="projectSelected(project)">
+        <!-- async pipe is needed to bind to observables -->
+        <a amtLine>{{ project.title }}</a>
+      </mat-list-item>
+    </mat-nav-list>
+  </mat-tab>
+</mat-tab-group>
